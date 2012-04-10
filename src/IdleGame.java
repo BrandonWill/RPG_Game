@@ -21,7 +21,6 @@ public class IdleGame {
     //fighting stuff
     public static boolean isFighting = false;
     public static boolean playersTurn = true;
-    public static boolean computersTurn = !playersTurn;
 
     public static boolean run = true;
 
@@ -35,7 +34,7 @@ public class IdleGame {
             Player.setLocation("Tutorial");
             Explore.search(Player.getLocation());
             Monster.getNewMonster();
-            System.out.println(Monster.currentHP);
+            System.out.println(Monster.getCurrentHP());
         final DwarfehGameGUI a = new DwarfehGameGUI();
 
         try {
@@ -53,7 +52,7 @@ public class IdleGame {
         while (run) {
                 Player.setLevel(grabCurrentLevel());
                 createNextLevel();
-                if (Player.getCurrentHealth() < 0) {
+                if (Combat.isDead(true)) {
 //                    System.exit(0);
                     try {
                         Thread.sleep(500);
@@ -64,23 +63,20 @@ public class IdleGame {
                     playersTurn = true;
                     Explore.search(Player.getLocation());
                     if (playersTurn) {
-                        Monster.currentHP -= 5;
+                        Monster.setCurrentHP(-5);
                         playersTurn = false;
-                        if (Monster.currentHP <= 0) {
-                            playersTurn = true;                           
-                            System.out.println("Current gold: " +Player.getGold());
-                            Player.setGold(Monster.killMoney);
-                            System.out.println("+1 gold: " +Player.getGold());
-                            
-                            Player.setExperience(Monster.killXP);
+                        if (Combat.isDead(false)) {
+                            playersTurn = true;
+                            Player.setGold(Monster.getKillMoney());
+
+                            Player.setExperience(Monster.getKillXP());
                             Monster.getNewMonster();
                         }
                     }
-                    if (!playersTurn && Monster.currentHP > 0) {
-                        Player.setCurrentHealth(-(Monster.damage * Monster.attackTimes));
+                    if (!playersTurn && Combat.isAlive(false)) {
+                        Player.setCurrentHealth(-(Monster.getDamage() * Monster.getAttackTimes()));
                     }
                 }
-            System.out.println("Looping!!");
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         DwarfehGameGUI.jPanel1.repaint();
@@ -128,8 +124,8 @@ public class IdleGame {
         }
     }
 
-    static double xpMultiplier = 1.05;
-    public static int grabCurrentLevel() {
+    static double xpMultiplier = 1.01;
+    private static int grabCurrentLevel() {
         long x = Player.getExperience();
         int y = 0;
         if (x >= 100) {
@@ -143,13 +139,13 @@ public class IdleGame {
         return y;
     }
 
-    public static void createNextLevel() {
+    private static void createNextLevel() {
         if (Player.getLevel() == 0) {
-            Player.setExperienceToLevel(100);
+            Player.setExperienceToLevel(10);
         } else {
             if (Player.getExperience() >= Player.getExperienceToLevel()) {
                 Player.setExperienceToLevel(Player.getExperience() + (long) (Player.getExperienceToLevel() * xpMultiplier));
-                System.out.println("xp to lvl:" + Player.getExperienceToLevel());
+//                System.out.println("xp to lvl:" + Player.getExperienceToLevel());
             }
         }
     }

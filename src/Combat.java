@@ -8,7 +8,11 @@
 public class Combat {
 
     public static boolean isDead(boolean isPlayer) {
-        return isPlayer ? Player.getCurrentHealth() <= 0 : Monster.currentHP <= 0;
+        return isPlayer ? Player.getCurrentHealth() <= 0 : Monster.getCurrentHP() <= 0;
+    }
+
+    public static boolean isAlive(boolean isPlayer) {
+        return isPlayer ? Player.getCurrentHealth() > 0 : Monster.getCurrentHP() > 0;
     }
 
     public static void fight() {

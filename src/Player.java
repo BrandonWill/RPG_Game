@@ -45,7 +45,7 @@ public class Player {
     }
 
     public static void setCurrentMana(long amount) {
-        currentMana = amount;
+        currentMana = currentMana == 0 ? amount : currentMana+amount;
     }
 
     public static long getCurrentMana() {

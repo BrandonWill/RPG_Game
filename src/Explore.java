@@ -9,7 +9,6 @@ import java.util.Random;
  */
 public class Explore {
     static String loc;
-    static int loc2;
 
     public enum locations {
         TUTORIAL, NONE;
@@ -26,7 +25,7 @@ public class Explore {
 
     public static void search(String place) {
         Random r = new Random();
-        int rand = r.nextInt(2);
+        int rand = r.nextInt(locations.values().length);
 
         if (rand == 0) {
             IdleGame.status = "Going alternative searching route!";
