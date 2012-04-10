@@ -53,7 +53,6 @@ public class Player {
     }
 
     public static void setTotalMana(long amount) {
-        Equipment.Weapon.getDamage();
         totalMana = amount;
     }
 
@@ -102,20 +101,7 @@ public class Player {
         return location;
     }
 
-    public static String playerName = null;
-    public static String playerWeapon = null;
-    public static String playerShield = null;
-    public static String playerHelm = null;
-    public static String playerPlatebody = null;
-    public static String playerPlatelegs = null;
-    public static String playerBoots = null;
-
     public static class Equipment {
-        public static Weapon weapon = null;
-
-
-        public Equipment(String name, long damageReduction, EquipmentType equipmentType) {
-        }
 
         public static class Weapon {
             private static String name;
@@ -126,11 +112,19 @@ public class Player {
                 Weapon.damage = damage;
             }
 
+            private static void decreaseDamage(long amount) {
+                damage -= amount;
+            }
+
+            private static void increaseDamage(long amount) {
+                damage += amount;
+            }
+
             public static long getDamage() {
                 return damage;
             }
 
-            public static String getName() {
+            public String getName() {
                 return name;
             }
         }
@@ -144,6 +138,14 @@ public class Player {
                 Shield.armor = damageReduction;
             }
 
+            private static void decreaseArmor(long amount) {
+                armor -= amount;
+            }
+
+            private static void increaseArmor(long amount) {
+                armor += amount;
+            }
+
             public static long getArmor() {
                 return armor;
             }
@@ -153,33 +155,145 @@ public class Player {
             }
         }
 
-        //TODO finish converting equipmentType to classes
+        public static class Helm {
+            private static String name;
+            private static long armor = 0;
 
+            Helm(String name, long damageReduction) {
+                Helm.name = name;
+                Helm.armor = damageReduction;
+            }
 
+            private static void decreaseArmor(long amount) {
+                armor -= amount;
+            }
 
-       public enum EquipmentType {
-           WEAPON(),
-           SHIELD(),
-           HELM,
-           BODY,
-           LEGS,
-           BOOTS,
-           RING,
-           NULL;
+            private static void increaseArmor(long amount) {
+                armor += amount;
+            }
 
-           private EquipmentType() {
+            public static long getArmor() {
+                return armor;
+            }
 
-           }
+            public static String getName() {
+                return name;
+            }
+        }
 
-           public static EquipmentType toArmor(String str) {
-               str = str.toUpperCase();
-               try {
-                   return valueOf(str);
-               } catch (Exception ex) {
-                   return NULL;
-               }
-           }
+        public static class Body {
+            private static String name;
+            private static long armor = 0;
+
+            Body(String name, long damageReduction) {
+                Body.name = name;
+                Body.armor = damageReduction;
+            }
+
+            private static void decreaseArmor(long amount) {
+                armor -= amount;
+            }
+
+            private static void increaseArmor(long amount) {
+                armor += amount;
+            }
+
+            public static long getArmor() {
+                return armor;
+            }
+
+            public static String getName() {
+                return name;
+            }
+        }
+
+        public static class Legs {
+            private static String name;
+            private static long armor = 0;
+
+            Legs(String name, long damageReduction) {
+                Legs.name = name;
+                Legs.armor = damageReduction;
+            }
+
+            private static void decreaseArmor(long amount) {
+                armor -= amount;
+            }
+
+            private static void increaseArmor(long amount) {
+                armor += amount;
+            }
+
+            public static long getArmor() {
+                return armor;
+            }
+
+            public static String getName() {
+                return name;
+            }
+        }
+
+        public static class Boots {
+            private static String name;
+            private static long armor = 0;
+
+            Boots(String name, long damageReduction) {
+                Boots.name = name;
+                Boots.armor = damageReduction;
+            }
+
+            private static void decreaseArmor(long amount) {
+                armor -= amount;
+            }
+
+            private static void increaseArmor(long amount) {
+                armor += amount;
+            }
+
+            public static long getArmor() {
+                return armor;
+            }
+
+            public static String getName() {
+                return name;
+            }
+        }
+
+        public static class Ring {
+            private static String name;
+            private static long armor = 0;
+            private static long damage = 0;
+
+            Ring(String name, long damage, long armor, long hpIncrease, long manaIncrease) {
+                Ring.name = name;
+                Ring.damage = damage;
+                Ring.armor = armor;
+                Player.setTotalHealth(Player.getTotalHealth()+hpIncrease);
+                Player.setTotalMana(Player.getTotalMana()+manaIncrease);
+            }
+
+            public static long getDamage() {
+                return damage;
+            }
+
+            public static long getArmor() {
+                return armor;
+            }
+
+            public static String getName() {
+                return name;
+            }
+        }
+
+       public static long getAllArmor() {
+           return Shield.getArmor()+Helm.getArmor()+Body.getArmor()+Legs.getArmor()+Boots.getArmor()+Ring.getArmor();
        }
+
+       public static long getAllDamage() {
+           return Weapon.getDamage()+Ring.getDamage();
+       }
+
+
     }
 
 }
