@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1a8d79f-5cd7-4efa-88c2-bbb3b519042d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RPG_Game.iml" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\.idea\ant.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\.idea\artifacts\Idle.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\.idea\codeStyleSettings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\.idea\dictionaries\Owner.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\.idea\inspectionProfiles\Project_Default.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\.idea\inspectionProfiles\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\.idea\projectCodeStyle.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\RPG_Game\src\Combat.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\RPG_Game\src\DwarfehGameGUI.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\RPG_Game\src\Explore.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\RPG_Game\src\IdleGame.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\RPG_Game\src\Monster.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\RPG_Game\src\Player.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\readme" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+    <list default="true" id="b1a8d79f-5cd7-4efa-88c2-bbb3b519042d" name="Default" comment="Fixed packaging and errors">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Combat.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/DwarfehGameGUI.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Explore.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IdleGame.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Monster.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Player.java" />
+      <change type="DELETED" beforePath="C:\Users\Owner\Dropbox\RPG_Game\RPG_Game\src\RPG_Game.iml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RPG_Game2.iws" />
@@ -368,6 +354,11 @@
       <created>1334085049614</created>
       <updated>1334085049614</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fixed packaging and errors">
+      <created>1334085716461</created>
+      <updated>1334085716461</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -385,7 +376,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32903227" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
