@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Idle">
+    <output-path>$PROJECT_DIR$/out/artifacts/Idle</output-path>
+    <root id="archive" name="Idle.jar">
+      <element id="module-output" name="MyGame" />
+      <element id="module-output" name="My Projects" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
