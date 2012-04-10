@@ -53,6 +53,7 @@ public class Player {
     }
 
     public static void setTotalMana(long amount) {
+        Equipment.Weapon.getDamage();
         totalMana = amount;
     }
 
@@ -99,6 +100,86 @@ public class Player {
 
     public static String getLocation() {
         return location;
+    }
+
+    public static String playerName = null;
+    public static String playerWeapon = null;
+    public static String playerShield = null;
+    public static String playerHelm = null;
+    public static String playerPlatebody = null;
+    public static String playerPlatelegs = null;
+    public static String playerBoots = null;
+
+    public static class Equipment {
+        public static Weapon weapon = null;
+
+
+        public Equipment(String name, long damageReduction, EquipmentType equipmentType) {
+        }
+
+        public static class Weapon {
+            private static String name;
+            private static long damage = 0;
+
+            Weapon(String name, long damage) {
+                Weapon.name = name;
+                Weapon.damage = damage;
+            }
+
+            public static long getDamage() {
+                return damage;
+            }
+
+            public static String getName() {
+                return name;
+            }
+        }
+
+        public static class Shield {
+            private static String name;
+            private static long armor = 0;
+
+            Shield(String name, long damageReduction) {
+                Shield.name = name;
+                Shield.armor = damageReduction;
+            }
+
+            public static long getArmor() {
+                return armor;
+            }
+
+            public static String getName() {
+                return name;
+            }
+        }
+
+        //TODO finish converting equipmentType to classes
+
+
+
+       public enum EquipmentType {
+           WEAPON(),
+           SHIELD(),
+           HELM,
+           BODY,
+           LEGS,
+           BOOTS,
+           RING,
+           NULL;
+
+           private EquipmentType() {
+
+           }
+
+           public static EquipmentType toArmor(String str) {
+               str = str.toUpperCase();
+               try {
+                   return valueOf(str);
+               } catch (Exception ex) {
+                   return NULL;
+               }
+           }
+       }
     }
 
 }

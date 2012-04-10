@@ -7,6 +7,8 @@
  */
 public class Combat {
 
+    private static boolean playersTurn = true;
+
     public static boolean isDead(boolean isPlayer) {
         return isPlayer ? Player.getCurrentHealth() <= 0 : Monster.getCurrentHP() <= 0;
     }
@@ -28,6 +30,14 @@ public class Combat {
         if (!isDead(false)) {
 
         }
+    }
+
+    public static boolean isPlayersTurn() {
+        return playersTurn;
+    }
+
+    public static void setPlayersTurn(boolean playersTurn) {
+        Combat.playersTurn = playersTurn;
     }
 
 }

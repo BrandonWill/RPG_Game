@@ -18,10 +18,6 @@ public class IdleGame {
     public static String playerPlatelegs = null;
     public static String playerBoots = null;
 
-    //fighting stuff
-    public static boolean isFighting = false;
-    public static boolean playersTurn = true;
-
     public static boolean run = true;
 
     //TODO add player input, shop, etc
@@ -29,8 +25,7 @@ public class IdleGame {
     public static void main(String args[]) {
 //        if (readFile()) {
             new Player(10000000, 10000000, 100, 100, 121, 1, 0, 0, "Tutorial");
-
-            createNextLevel();
+            Calculations.createNextLevel();
             Player.setLocation("Tutorial");
             Explore.search(Player.getLocation());
             Monster.getNewMonster();
@@ -50,8 +45,8 @@ public class IdleGame {
 
 
         while (run) {
-                Player.setLevel(grabCurrentLevel());
-                createNextLevel();
+                Player.setLevel(Calculations.grabCurrentLevel());
+                Calculations.createNextLevel();
                 if (Combat.isDead(true)) {
 //                    System.exit(0);
                     try {
@@ -60,20 +55,20 @@ public class IdleGame {
                     }
                 }
                 if (Player.getCurrentHealth() > 0) {
-                    playersTurn = true;
+                    Combat.setPlayersTurn(true);
                     Explore.search(Player.getLocation());
-                    if (playersTurn) {
+                    if (Combat.isPlayersTurn()) {
                         Monster.setCurrentHP(-5);
-                        playersTurn = false;
+                        Combat.setPlayersTurn(false);
                         if (Combat.isDead(false)) {
-                            playersTurn = true;
+                            Combat.setPlayersTurn(true);
                             Player.setGold(Monster.getKillMoney());
 
                             Player.setExperience(Monster.getKillXP());
                             Monster.getNewMonster();
                         }
                     }
-                    if (!playersTurn && Combat.isAlive(false)) {
+                    if (!Combat.isPlayersTurn() && Combat.isAlive(false)) {
                         Player.setCurrentHealth(-(Monster.getDamage() * Monster.getAttackTimes()));
                     }
                 }
@@ -124,31 +119,9 @@ public class IdleGame {
         }
     }
 
-    static double xpMultiplier = 1.01;
-    private static int grabCurrentLevel() {
-        long x = Player.getExperience();
-        int y = 0;
-        if (x >= 100) {
-            while (x >= 100) {
-                x = (int) (x / xpMultiplier);
-                y++;
-            }
-        } else {
-            y = 0;
-        }
-        return y;
-    }
 
-    private static void createNextLevel() {
-        if (Player.getLevel() == 0) {
-            Player.setExperienceToLevel(10);
-        } else {
-            if (Player.getExperience() >= Player.getExperienceToLevel()) {
-                Player.setExperienceToLevel(Player.getExperience() + (long) (Player.getExperienceToLevel() * xpMultiplier));
-//                System.out.println("xp to lvl:" + Player.getExperienceToLevel());
-            }
-        }
-    }
+
+
 
 }
 
