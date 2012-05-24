@@ -30,13 +30,13 @@ public class IdleGame {
             Explore.search(Player.getLocation());
             Monster.getNewMonster();
             System.out.println(Monster.getCurrentHP());
-        final DwarfehGameGUI a = new DwarfehGameGUI();
+        final DwarfehGameGUI gui = new DwarfehGameGUI();
 
         try {
             EventQueue.invokeAndWait(new Runnable() {
 
                 public void run() {
-                    a.setVisible(true);
+                    gui.setVisible(true);
                 }
             });
         } catch (Exception ignored) {
@@ -44,16 +44,18 @@ public class IdleGame {
 
 
 
-        while (run) {
+        gameLoop.start();
+    }
+
+    static Thread gameLoop = new Thread(new Runnable() {
+        public void run() {
+            while (run) {
+                if (Combat.isDead(true)) {
+                    DwarfehGameGUI.jPanel1.repaint();
+                    continue;
+                }
                 Player.setLevel(Calculations.grabCurrentLevel());
                 Calculations.createNextLevel();
-                if (Combat.isDead(true)) {
-//                    System.exit(0);
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException ignored) {
-                    }
-                }
                 if (Player.getCurrentHealth() > 0) {
                     Combat.setPlayersTurn(true);
                     Explore.search(Player.getLocation());
@@ -78,8 +80,9 @@ public class IdleGame {
                     }
                 });
 //            }
+            }
         }
-    }
+    });
 
 
     private static boolean readFile() {

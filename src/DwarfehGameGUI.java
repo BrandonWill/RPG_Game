@@ -9,13 +9,22 @@ import java.awt.event.*;
  * Time: 5:56 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DwarfehGameGUI extends JFrame implements ComponentListener {
+public class DwarfehGameGUI extends JFrame implements ComponentListener, MouseListener {
     private static final Rectangle menuRect = new Rectangle(50, 50, 61, 15);
     private static int panelHeight;
     private static int panelWidth;
 
+    public static Rectangle box1 = new Rectangle(220, 207, 150, 30);
+    public boolean box1Enabled = false;
+    public static Rectangle box2 = new Rectangle(220, 237, 150, 30);
+    public boolean box2Enabled = false;
+    public static Rectangle box3 = new Rectangle(220, 267, 150, 30);
+    public boolean box3Enabled = false;
+
     public DwarfehGameGUI() {
         addComponentListener(this);
+        Rectangle a = new Rectangle(280, 207, 150, 30);
+        box1.contains(15, 200);
         initComponents();
     }
 
@@ -30,11 +39,17 @@ public class DwarfehGameGUI extends JFrame implements ComponentListener {
                 drawStickFigure(g);
                 drawMenu(g);
                 drawStatus(g);
+                drawOptions(g);
 //                g.fillOval(x-2, y-2, 4, 4);
 //                g.drawString(System.getProperty("user.dir"), 10, 50);
 
             }
         };
+        add(jPanel1);
+
+        setResizable(false);
+
+        jPanel1.addMouseListener(this);
 
         jMenuBar1 = new JMenuBar();
         jMenu1 = new JMenu();
@@ -43,8 +58,6 @@ public class DwarfehGameGUI extends JFrame implements ComponentListener {
         jMenu3 = new JMenu();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        add(jPanel1);
 
         jMenu1.setText("File");
         jMenuItem1.setText("Exit");
@@ -65,8 +78,10 @@ public class DwarfehGameGUI extends JFrame implements ComponentListener {
         setJMenuBar(jMenuBar1);
 
         pack();
-        panelHeight = jPanel1.getHeight();
-        panelWidth = jPanel1.getWidth();
+        panelHeight = this.getHeight();
+        panelWidth = this.getWidth();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation((int)d.getWidth()/2 - (int)getPreferredSize().getWidth()/2, (int)d.getHeight()/2 - (int)getPreferredSize().getHeight()/2);
     }
 
     private void jMenuItem1ActionPerformed() {
@@ -84,9 +99,9 @@ public class DwarfehGameGUI extends JFrame implements ComponentListener {
     private JMenuItem jMenuItem1;
 
 
+
     private void drawStickFigure(Graphics g) {
-        Graphics2D graphic = (Graphics2D) g;
-//        graphic.
+//        Graphics2D graphic = (Graphics2D) g;
 //        graphic.setColor(Color.red);
 //        graphic.setStroke(new BasicStroke(1));
 //        System.out.println("Width: " +jPanel1.getWidth() +" Height: " +jPanel1.getHeight());
@@ -114,7 +129,7 @@ public class DwarfehGameGUI extends JFrame implements ComponentListener {
         graphic.drawRect(0, 0, 1023, 695);
     }
 
-    public static void drawStatus(Graphics g) {
+    private void drawStatus(Graphics g) {
         Graphics2D graphic = (Graphics2D) g;
         graphic.setColor(Color.red);
         graphic.drawString("Health: " + Player.getCurrentHealth() + '/' + Player.getTotalHealth(), 10, 15);
@@ -126,9 +141,29 @@ public class DwarfehGameGUI extends JFrame implements ComponentListener {
         graphic.drawString("Status of Bot: " + IdleGame.status, 10, panelHeight - 10);
     }
 
+    private void drawOptions(Graphics g) {
+        Graphics2D graphic = (Graphics2D) g;
+        graphic.drawString("Mouse: " +jPanel1.getMousePosition(), 200, 50);
+        box1Enabled = true;
+        graphic.setColor(Color.red);
+
+        if (box1Enabled) {
+            graphic.draw3DRect(box1.x, box1.y, box1.width, box1.height, true);
+            graphic.drawString("Box 1 here!", (int)box1.getX()+40, 225);
+        }
+        if (box2Enabled) {
+            graphic.draw3DRect(box2.x, box2.y, box2.width, box2.height, true);
+            graphic.drawString("Box 2 here!", (int)box2.getX()+40, 255);
+        }
+        if (box3Enabled) {
+            graphic.draw3DRect(box3.x, box3.y, box3.width, box3.height, true);
+            graphic.drawString("Box 3 here!", (int)box3.getX()+40, 285);
+        }
+    }
+
     public void componentResized(ComponentEvent e) {
-        panelHeight = jPanel1.getHeight();
-        panelWidth = jPanel1.getWidth();
+        panelHeight = this.getHeight();
+        panelWidth = this.getWidth();
     }
 
     public void componentMoved(ComponentEvent e) {
@@ -140,7 +175,30 @@ public class DwarfehGameGUI extends JFrame implements ComponentListener {
     public void componentHidden(ComponentEvent e) {
     }
 
-    class FrameListener extends WindowAdapter {
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    public void mousePressed(MouseEvent e) {
+        if (box1Enabled && box1.contains(e.getPoint()) ) {
+            box2Enabled = true;
+        }
+        if (box2Enabled && box2.contains(e.getPoint()) ) {
+            box3Enabled = true;
+        }
+        System.out.println("Pressed here: " +e.getPoint());
+    }
+
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    public void mouseExited(MouseEvent e) {
+    }
+
+    private class FrameListener extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
             IdleGame.run = false;
             System.exit(0);

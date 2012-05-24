@@ -124,7 +124,7 @@ public class Player {
                 return damage;
             }
 
-            public String getName() {
+            public static String getName() {
                 return name;
             }
         }
